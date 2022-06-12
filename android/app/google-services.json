@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "4168280051",
+    "project_id": "snake-c10a3",
+    "storage_bucket": "snake-c10a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4168280051:android:eb23bfcd3ecf7a9e655486",
+        "android_client_info": {
+          "package_name": "com.example.snake"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4168280051-b1eb3smqhti9rn0av56q2ju2spd4m53q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_6UPubGucp-V_y30N85ch5d-PzdZ8hUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4168280051-b1eb3smqhti9rn0av56q2ju2spd4m53q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
