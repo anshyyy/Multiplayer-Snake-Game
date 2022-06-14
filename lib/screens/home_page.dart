@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:snake/Widgets/Blank_pixel.dart';
 import 'package:snake/Widgets/FoodPixel.dart';
@@ -19,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   //grid Dimensions
   int rowSize = 10;
   int totalNumberofSquare = 100;
+  final nameController = TextEditingController();
   int currentScore = 0;
   bool gameStarted = false;
   //snake Positiion
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
           // display gameover
           showDialog(
               context: context,
-              //  barrierDismissible: false,
+              barrierDismissible: false,
               builder: (context) {
                 return AlertDialog(
                   title: Text('Game Over'),
@@ -48,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text("Your Score is: $currentScore"),
                       TextField(
+                        controller: nameController,
                         decoration: InputDecoration(hintText: 'Enter Name'),
                       ),
                     ],
@@ -57,6 +60,8 @@ class _HomePageState extends State<HomePage> {
                       onPressed: () {
                         Navigator.pop(context);
                         submitScore();
+                        newGame();
+                        gameStarted = false;
                       },
                       child: Text('Submit'),
                       color: Colors.pink,
@@ -69,7 +74,23 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void submitScore() {}
+  void submitScore() {
+    var database = FirebaseFirestore.instance;
+    database.collection('highscores').add({
+      "name": nameController,
+      "score": currentScore,
+    });
+  }
+
+  void newGame() {
+    setState(() {
+      SnakePos = [0, 1, 2];
+      foodPos = 55;
+      CurrentDirection = snake_direction.RIGHT;
+      currentScore = 0;
+    });
+  }
+
   void eatFood() {
     currentScore++;
     while (SnakePos.contains(foodPos)) {
